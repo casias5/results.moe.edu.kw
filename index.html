@@ -376,9 +376,15 @@
                     </tbody>
                 </table>
                 
-                <button class="btn-print-cert">
+                <!-- زر الطباعة -->
+                <button class="btn-print-cert" onclick="document.getElementById('certImage').style.display='block'">
                     <span>🖨️</span> شهادة الصف الثاني عشر
                 </button>
+                
+                <!-- الصورة المضافة -->
+                <div id="certImage" style="display:none; margin-top:20px;">
+                    <img src="image_2.png" style="width:100%; border:1px solid #ccc; border-radius:8px;">
+                </div>
                 
                 <center>
                     <button class="btn-back-action" onclick="navigateTo('view4')">رجوع لقائمة الخدمات</button>
