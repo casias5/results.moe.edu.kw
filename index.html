@@ -3,450 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>بوابة وزارة التربية - نتائج صفوف النقل</title>
+    <title>البوابة الإلكترونية - وزارة التربية - دولة الكويت</title>
     <style>
-        :root {
-            --navy-dark: #0b1a30;
-            --navy-bright: #102547;
-            --blue-accent: #3a8bcd;
-            --blue-button: #1d4ed8;
-            --bg-light: #f4f6f9;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f6f9;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-
-        /* هيدر وزارة التربية الثابت */
-        .moe-header {
-            background-color: var(--navy-bright);
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: white;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        .menu-icon {
-            font-size: 24px;
-            cursor: pointer;
-            border: 1px solid rgba(255,255,255,0.2);
-            padding: 2px 8px;
-            border-radius: 4px;
-        }
-        .header-logo-section {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-align: left;
-            font-size: 11px;
-            line-height: 1.3;
-        }
-
-        /* شريط الأيقونات العلوي */
-        .app-shortcut-bar {
-            background-color: #f0f4f8;
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            padding: 8px 0;
-            border-bottom: 1px solid #d0d7de;
-        }
-        .shortcut-icon {
-            width: 32px;
-            height: 32px;
-            background-color: #24578a;
-            color: white;
-            border-radius: 4px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-        }
-
-        /* منطقة المحتوى */
-        .screen-content {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-            box-sizing: border-box;
-            width: 100%;
-        }
-
-        /* التصاميم والكروت */
-        .moe-card-white, .login-box {
-            background: white;
-            width: 100%;
-            max-width: 500px;
-            border-radius: 12px;
-            padding: 30px 20px;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            border: 1px solid #e2e8f0;
-            box-sizing: border-box;
-            margin-top: 20px;
-        }
+        /* إعدادات الصفحة الأساسية */
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: #f4f6f9; margin: 0; padding: 0; display: flex; flex-direction: column; min-height: 100vh; }
         
-        .welcome-box-p11 {
-            background: white;
-            width: 100%;
-            max-width: 600px;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            text-align: right;
-            box-sizing: border-box;
-            margin-top: 20px;
-        }
-
-        .title-large { color: #0f2547; font-size: 20px; font-weight: bold; margin-bottom: 15px; }
-        .welcome-box-p11 h2 { color: #102547; font-size: 22px; margin-bottom: 15px; font-weight: bold; }
-        .welcome-box-p11 p { color: #576574; font-size: 14px; line-height: 1.8; margin-bottom: 25px; }
+        /* الهيدر */
+        .moe-header { background-color: #0b1a30; color: white; padding: 25px; text-align: center; font-weight: bold; font-size: 1.4rem; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
         
-        .btn-dark-rect {
-            background-color: #1a365d; color: white; border: none;
-            padding: 12px 25px; font-size: 15px; border-radius: 4px;
-            cursor: pointer; display: inline-flex; align-items: center; gap: 8px;
-        }
-
-        .btn-blue {
-            width: 100%;
-            background: linear-gradient(180deg, #3a8bcd 0%, #24578a 100%);
-            color: white; border: none; padding: 14px;
-            border-radius: 8px; font-weight: bold; font-size: 15px;
-            margin-bottom: 12px; cursor: pointer;
-        }
-
-        .input-login {
-            width: 100%; padding: 14px; margin-bottom: 15px;
-            border: 1px solid #cbd5e1; border-radius: 6px;
-            box-sizing: border-box; text-align: center; font-size: 15px;
-        }
-        .btn-submit-login {
-            width: 100%; padding: 14px; background-color: #3a8bcd;
-            color: white; border: none; border-radius: 6px;
-            font-weight: bold; font-size: 15px; cursor: pointer;
-        }
-        .outline-btn {
-            width: 100%; padding: 12px; background: transparent;
-            border: 1px solid #3a8bcd; color: #3a8bcd;
-            border-radius: 6px; margin-top: 10px; font-size: 14px; font-weight: bold;
-        }
-
-        /* منصة الخدمات الطلابية */
-        .platform-container {
-            width: 100%;
-            max-width: 700px;
-            background: transparent;
-            margin-top: 10px;
-        }
-        .platform-banner {
-            color: #102547; font-weight: bold;
-            text-align: center; padding: 15px;
-            font-size: 20px; margin-bottom: 15px;
-        }
-        .services-grid-layout {
-            display: grid; grid-template-columns: repeat(2, 1fr);
-            gap: 20px; padding: 10px;
-        }
-        .grid-card {
-            background: #ffffff; border-radius: 24px; border: 2px solid #cbd5e1;
-            display: flex; flex-direction: column; align-items: center;
-            justify-content: space-between; overflow: hidden; min-height: 180px;
-            cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.02);
-        }
-        .card-icon { font-size: 50px; margin-top: 25px; }
-        .card-label {
-            background-color: #102547; color: white; width: 100%;
-            text-align: center; padding: 12px 0; font-size: 14px; font-weight: bold;
-        }
-
-        /* تصميم الجدول المكبّر والمعدل */
-        .certificate-container {
-            width: 100%;
-            max-width: 750px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            border: 1px solid #dcdfe4;
-            overflow: hidden;
-            margin-top: 20px;
-            box-sizing: border-box;
-        }
-        .certificate-header {
-            background-color: #102547; color: white; text-align: center;
-            padding: 18px; font-size: 20px; font-weight: bold;
-        }
-        .certificate-body { padding: 30px 25px; }
+        /* المحتوى */
+        .content { padding: 30px 20px; display: flex; flex-direction: column; align-items: center; flex: 1; }
         
-        .cert-table {
-            width: 100%; border-collapse: collapse; text-align: center;
-            margin-bottom: 30px;
-        }
-        .cert-table th {
-            background-color: #ffffff; color: #334155; font-weight: bold;
-            padding: 16px 12px; border: 1px solid #cbd5e1; font-size: 17px; width: 33.33%;
-        }
-        .cert-table td {
-            padding: 20px 12px; border: 1px solid #cbd5e1; color: #1e293b;
-            font-size: 16px; font-weight: 500; background-color: #ffffff;
-        }
-        .status-success {
-            color: #16a34a !important;
-            font-weight: bold !important;
-        }
-
-        .btn-print-cert {
-            width: 100%; background-color: #1266cf; color: white; border: none;
-            padding: 15px; border-radius: 6px; font-size: 16px; font-weight: bold;
-            cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;
-        }
-        .btn-back-action {
-            margin-top: 20px; background: none; border: none; color: #102547;
-            cursor: pointer; font-size: 15px; font-weight: bold; text-decoration: underline;
-        }
-
-        /* شاشة عرض الإحصائيات */
-        .stats-box {
-            width: 100%; max-width: 500px; background: white; padding: 25px;
-            border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: right;
-        }
-        .stat-item { margin-bottom: 15px; }
-        .stat-progress { background: #e2e8f0; border-radius: 6px; height: 15px; overflow: hidden; margin-top: 5px; }
-        .stat-fill { background: #3a8bcd; height: 100%; width: 0; transition: width 1s ease-in-out; }
-
-        /* فوتر الموقع */
-        .site-footer-dark {
-            background-color: #0b1a30; color: #94a3b8;
-            text-align: center; padding: 30px 20px; font-size: 13px; line-height: 1.8;
-            margin-top: auto; padding-bottom: 40px;
-        }
-
+        /* الكروت */
+        .card { background: white; width: 100%; max-width: 650px; padding: 30px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-top: 20px; text-align: center; }
+        
+        /* الأزرار */
+        .btn-main { display: block; width: 100%; padding: 18px; margin: 12px 0; background: #102547; color: white; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 1rem; transition: 0.3s; }
+        .btn-main:hover { background: #1e3a66; }
+        .btn-stats { background: #3a8bcd; }
+        
+        /* الحقول */
+        .input-field { width: 100%; padding: 15px; margin: 12px 0; border: 1px solid #dcdfe4; border-radius: 10px; box-sizing: border-box; text-align: center; font-size: 1rem; }
+        
+        /* شبكة الخدمات المكثفة */
+        .services-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; width: 100%; max-width: 650px; margin-top: 25px; }
+        .service-card { background: white; border-radius: 15px; border: 1px solid #dcdfe4; padding: 15px; cursor: pointer; display: flex; flex-direction: column; align-items: center; transition: 0.3s; }
+        .service-card:hover { border-color: #102547; background: #fdfdfd; transform: translateY(-2px); }
+        .service-card img { width: 50px; height: 50px; margin-bottom: 12px; }
+        .service-label { background: #102547; color: white; width: 100%; padding: 10px 0; border-radius: 8px; font-size: 12px; font-weight: bold; text-align: center; }
+        
+        /* الجدول */
+        .result-table { width: 100%; border-collapse: collapse; margin-top: 25px; text-align: right; }
+        .result-table td { padding: 15px; border: 1px solid #ddd; }
+        .result-label { font-weight: bold; background: #f8f9fa; width: 40%; color: #333; }
+        
         .hidden { display: none !important; }
     </style>
 </head>
 <body>
 
-    <div class="moe-header">
-        <div class="menu-icon">☰</div>
-        <div class="header-logo-section">
-            <div>وزارة التربية<br><span style="font-size:9px;">Ministry of Education</span><br>دولة الكويت</div>
-        </div>
-    </div>
+    <div class="moe-header">وزارة التربية - دولة الكويت</div>
 
-    <div id="shortcutBar" class="app-shortcut-bar">
-        <div class="shortcut-icon">👥</div>
-        <div class="shortcut-icon">✉️</div>
-        <div class="shortcut-icon">🔊</div>
-        <div class="shortcut-icon">📅</div>
-    </div>
-
-    <div class="screen-content">
+    <div class="content">
         
-        <div id="view1" class="welcome-box-p11">
-            <h2>نتائج صفوف النقل للعام الدراسي 2025-2026</h2>
-            <p>يسر وزارة التربية أن تهنئ أبناءنا الطلبة وأولياء الأمور بمناسبة نهاية الفترة الدراسية الثانية لصفوف النقل للعام الدراسي 2025-2026 ونعلن عن توفر نتائج صفوف النقل الآن على الموقع.</p>
-            <button class="btn-dark-rect" onclick="navigateTo('view2')">فتح الرابط ←</button>
+        <div id="selectionScreen" class="card">
+            <h2 style="color: #102547;">تسجيل الدخول</h2>
+            <button class="btn-main" onclick="showLogin()">🎓 طالب</button>
+            <button class="btn-main" onclick="showLogin()">👤 ولي أمر</button>
+            <button class="btn-main btn-stats" onclick="showServices()">📊 الإحصائيات</button>
         </div>
 
-        <div id="view2" class="moe-card-white hidden">
-            <div class="title-large">نتائج الطلبة</div>
-            <p style="color: #64748b; font-size: 14px; margin-bottom: 25px;">يتطلب عرض النتيجة تسجيل الدخول عبر حساب تيمز (Teams) للطالب أو عبر تطبيق هويتي.</p>
-            
-            <button class="btn-blue" onclick="navigateTo('view3')">🎓 طالب</button>
-            <button class="btn-blue" onclick="navigateTo('view3')">👤 ولي أمر</button>
-            <button class="btn-blue" style="background: #64748b;" onclick="navigateTo('viewStats')">📊 الإحصائيات</button>
+        <div id="loginScreen" class="card hidden">
+            <h2 style="color: #102547;">بيانات الدخول</h2>
+            <input type="text" class="input-field" placeholder="الرقم المدني">
+            <input type="password" class="input-field" placeholder="كلمة المرور">
+            <button class="btn-main" onclick="showServices()">تسجيل الدخول</button>
         </div>
 
-        <div id="view3" class="login-box hidden">
-            <div class="title-large">تسجيل الدخول</div>
-            <input type="text" id="civID" class="input-login" placeholder="الرقم المدني" value="">
-            <input type="password" id="userPass" class="input-login" placeholder="كلمة المرور" value="">
-            <button class="btn-submit-login" onclick="navigateTo('view4')">تسجيل الدخول</button>
-            <button class="outline-btn" onclick="navigateTo('view4')">الدخول عبر حساب تيمز</button>
+        <div id="servicesScreen" class="services-grid hidden">
+            <div class="service-card"><img src="https://cdn-icons-png.flaticon.com/128/1160/1160358.png"><div class="service-label">تحديث بيانات الطلبة</div></div>
+            <div class="service-card"><img src="https://cdn-icons-png.flaticon.com/128/3135/3135768.png"><div class="service-label">تسجيل الطلبة</div></div>
+            <div class="service-card"><img src="https://cdn-icons-png.flaticon.com/128/2910/2910243.png"><div class="service-label">شهادات صفوف النقل</div></div>
+            <div class="service-card"><img src="https://cdn-icons-png.flaticon.com/128/3048/3048425.png"><div class="service-label">استعلام عن بيانات طالب</div></div>
+            <div class="service-card" onclick="showResult()"><img src="https://cdn-icons-png.flaticon.com/128/1048/1048956.png"><div class="service-label">شهادات الصف الثاني عشر</div></div>
+            <div class="service-card"><img src="https://cdn-icons-png.flaticon.com/128/2553/2553391.png"><div class="service-label">أرقام الجلوس</div></div>
+            <div class="service-card"><img src="https://cdn-icons-png.flaticon.com/128/1666/1666635.png"><div class="service-label">استعلام عن غياب طالب</div></div>
+            <div class="service-card"><img src="https://cdn-icons-png.flaticon.com/128/2784/2784534.png"><div class="service-label">نقل الطلبة</div></div>
+            <div class="service-card"><img src="https://cdn-icons-png.flaticon.com/128/3209/3209257.png"><div class="service-label">التحويل الطبي</div></div>
+            <div class="service-card"><img src="https://cdn-icons-png.flaticon.com/128/2821/2821637.png"><div class="service-label">الدعم الفني لتيمز</div></div>
         </div>
 
-        <div id="view4" class="platform-container hidden">
-            <div class="platform-banner">منصة الخدمات الطلابية</div>
-            <div class="services-grid-layout">
-                
-                <div class="grid-card">
-                    <div class="card-icon">🔄</div>
-                    <div class="card-label">تحديث بيانات الطلبة</div>
-                </div>
-                
-                <div class="grid-card">
-                    <div class="card-icon">📝</div>
-                    <div class="card-label">تسجيل الطلبة</div>
-                </div>
-                
-                <div class="grid-card">
-                    <div class="card-icon">📚</div>
-                    <div class="card-label">شهادات صفوف النقل</div>
-                </div>
-                
-                <div class="grid-card">
-                    <div class="card-icon">🔍</div>
-                    <div class="card-label">استعلام عن بيانات طالب</div>
-                </div>
-                
-                <div class="grid-card">
-                    <div class="card-icon">⚠️</div>
-                    <div class="card-label">تظلمات الصف الثاني عشر</div>
-                </div>
-                
-                <div class="grid-card" onclick="navigateTo('view5')">
-                    <div class="card-icon">📜</div>
-                    <div class="card-label">شهادات الصف الثاني عشر</div>
-                </div>
-                
-                <div class="grid-card">
-                    <div class="card-icon">📦</div>
-                    <div class="card-label">الصندوق الخيري</div>
-                </div>
-                
-                <div class="grid-card">
-                    <div class="card-icon">🪑</div>
-                    <div class="card-label">ارقام الجلوس</div>
-                </div>
-                
-                <div class="grid-card">
-                    <div class="card-icon">❌</div>
-                    <div class="card-label">استعلام عن غياب طالب</div>
-                </div>
-                
-                <div class="grid-card">
-                    <div class="card-icon">🏥</div>
-                    <div class="card-label">التحويل الطبي</div>
-                </div>
-                
-                <div class="grid-card">
-                    <div class="card-icon">🚌</div>
-                    <div class="card-label">نقل الطلبة</div>
-                </div>
-                
-                <div class="grid-card">
-                    <div class="card-icon">📱</div>
-                    <div class="card-label">تحديث رقم تليفون الطالب للمصادقة على خدمات ميكروسوفت (تيمز)</div>
-                </div>
-                
-                <div class="grid-card">
-                    <div class="card-icon">🏕️</div>
-                    <div class="card-label">تسجيل الأندية الصيفية والمسائية</div>
-                </div>
-                
-                <div class="grid-card">
-                    <div class="card-icon">🔀</div>
-                    <div class="card-label">النقل المرحلي</div>
-                </div>
-                
-                <div class="grid-card" style="grid-column: span 2; max-width: 50%; justify-self: center; width: 100%;">
-                    <div class="card-icon">👥</div>
-                    <div class="card-label">الدعم الفني لتيمز</div>
-                </div>
-
-            </div>
+        <div id="resultScreen" class="card hidden">
+            <h2 style="color: #102547;">بيانات النتيجة</h2>
+            <table class="result-table">
+                <tr><td class="result-label">الاسم</td><td>نايف خالد فهد المطيري</td></tr>
+                <tr><td class="result-label">الرقم المدني</td><td>305110702086</td></tr>
+                <tr><td class="result-label">رقم الجلوس</td><td>4</td></tr>
+                <tr><td class="result-label">النتيجة</td><td style="color:green; font-weight:bold;">ناجح</td></tr>
+                <tr><td class="result-label">النسبة المئوية</td><td>62.25%</td></tr>
+            </table>
+            <button class="btn-main" style="margin-top:25px; background: #555;" onclick="backToServices()">رجوع للقائمة</button>
         </div>
 
-        <div id="view5" class="certificate-container hidden">
-            <div class="certificate-header">شهادات الصف الثاني عشر</div>
-            <div class="certificate-body">
-                <table class="cert-table">
-                    <thead>
-                        <tr>
-                            <th>الرقم المدني</th>
-                            <th>إسم الطالب</th>
-                            <th>حالة الشهادة</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>305110702086</td>
-                            <td>نايف خالد فهد المطيري</td>
-                            <td class="status-success">تم رفع الشهادة</td>
-                        </tr>
-                    </tbody>
-                </table>
-                
-                <!-- زر الطباعة -->
-                <button class="btn-print-cert" onclick="document.getElementById('certImage').style.display='block'">
-                    <span>🖨️</span> شهادة الصف الثاني عشر
-                </button>
-                
-                <!-- الصورة المضافة -->
-                <div id="certImage" style="display:none; margin-top:20px;">
-                    <img src="SHHADT(2).jpg" alt="شهادة الصف الثاني عشر" style="width: 100%;"
-                </div>
-                
-                <center>
-                    <button class="btn-back-action" onclick="navigateTo('view4')">رجوع لقائمة الخدمات</button>
-                </center>
-            </div>
-        </div>
-
-        <div id="viewStats" class="stats-box hidden">
-            <div class="title-large">إحصائيات النجاح</div>
-            <div class="stat-item">
-                <div>المرحلة الثانوية: 88%</div>
-                <div class="stat-progress"><div class="stat-fill" id="fill1"></div></div>
-            </div>
-            <div class="stat-item">
-                <div>المرحلة المتوسطة: 92%</div>
-                <div class="stat-progress"><div class="stat-fill" id="fill2"></div></div>
-            </div>
-            <button class="btn-blue" style="margin-top:20px;" onclick="navigateTo('view2')">رجوع للخلف</button>
-        </div>
-
-    </div>
-
-    <div id="siteFooter" class="site-footer-dark hidden">
-        <div style="font-weight: bold; margin-bottom: 10px;">وسائل التواصل الإجتماعي | روابط سريعة</div>
-        <div style="font-size: 11px; color: #64748b;">خريطة الموقع | شروط الاستخدام | الأسئلة الشائعة | التطبيقات الإلكترونية</div>
-        <hr style="border: 0; border-top: 1px solid #1e293b; margin: 15px 0;">
-        <div>جميع حقوق الطبع محفوظة لدى وزارة التربية - دولة الكويت © 2026</div>
     </div>
 
     <script>
-        function navigateTo(viewId) {
-            document.getElementById('view1').classList.add('hidden');
-            document.getElementById('view2').classList.add('hidden');
-            document.getElementById('view3').classList.add('hidden');
-            document.getElementById('view4').classList.add('hidden');
-            document.getElementById('view5').classList.add('hidden');
-            document.getElementById('viewStats').classList.add('hidden');
-            
-            document.getElementById(viewId).classList.remove('hidden');
-
-            const shortcutBar = document.getElementById('shortcutBar');
-            const siteFooter = document.getElementById('siteFooter');
-
-            if (viewId === 'view1') {
-                shortcutBar.classList.remove('hidden');
-                siteFooter.classList.add('hidden');
-            } else if (viewId === 'view2' || viewId === 'viewStats') {
-                shortcutBar.classList.add('hidden');
-                siteFooter.classList.add('hidden');
-                if(viewId === 'viewStats') {
-                    setTimeout(() => {
-                        document.getElementById('fill1').style.width = '88%';
-                        document.getElementById('fill2').style.width = '92%';
-                    }, 100);
-                }
-            } else if (viewId === 'view3') {
-                shortcutBar.classList.add('hidden');
-                siteFooter.classList.add('hidden');
-            } else if (viewId === 'view4' || viewId === 'view5') {
-                shortcutBar.classList.add('hidden');
-                siteFooter.classList.remove('hidden');
-            }
+        function showLogin() {
+            document.getElementById('selectionScreen').classList.add('hidden');
+            document.getElementById('loginScreen').classList.remove('hidden');
+        }
+        function showServices() {
+            document.getElementById('selectionScreen').classList.add('hidden');
+            document.getElementById('loginScreen').classList.add('hidden');
+            document.getElementById('servicesScreen').classList.remove('hidden');
+        }
+        function showResult() {
+            document.getElementById('servicesScreen').classList.add('hidden');
+            document.getElementById('resultScreen').classList.remove('hidden');
+        }
+        function backToServices() {
+            document.getElementById('resultScreen').classList.add('hidden');
+            document.getElementById('servicesScreen').classList.remove('hidden');
         }
     </script>
 </body>
